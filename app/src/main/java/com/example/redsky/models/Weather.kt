@@ -29,6 +29,4 @@ data class Forecast (
     val windDirection: String,
     val windSpeed: Int,
     val humidity: Int
-
-
 )
