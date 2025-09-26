@@ -73,14 +73,14 @@ fun DailyForecast (forecast: Forecast){
             contentDescription = forecast.condition,
             modifier = Modifier
                 .size(50.dp)
-                .padding(2.dp)
+                .padding(5.dp)
         )
         Spacer(modifier = Modifier.width(8.dp))
 
         Column {
             Text(
                 text = forecast.condition,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.titleSmall,
                 color = forecastTextColor
             )
             Text(
