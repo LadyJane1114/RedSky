@@ -20,20 +20,20 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 //need to add some sort of way for the app to tell what time of day it is if I want to include my nighttime backgrounds. Also need to include some snow backgrounds because I forgot!! oopsie
         val sampleCurrent = Current(
-            weatherImageRes = R.drawable.afternoon_sunny,
-            condition = "Sunny",
-//            temperature = Temperature(current = 25),
-            precipitationAmount = 0,
-            precipitationType = "None",
-            windDirection = "NE",
-            windSpeed = 15
-//            weatherImageRes = R.drawable.day_rain,
-//            condition = "Rainy",
+//            weatherImageRes = R.drawable.afternoon_sunny,
+//            condition = "Sunny",
 ////            temperature = Temperature(current = 25),
-//            precipitationAmount = 100,
-//            precipitationType = "Rain",
-//            windDirection = "NW",
-//            windSpeed = 20
+//            precipitationAmount = 0,
+//            precipitationType = "None",
+//            windDirection = "NE",
+//            windSpeed = 15
+            weatherImageRes = R.drawable.day_rain,
+            condition = "Rainy",
+//            temperature = Temperature(current = 25),
+            precipitationAmount = 100,
+            precipitationType = "Rain",
+            windDirection = "NW",
+            windSpeed = 20
         )
 
         setContent {
