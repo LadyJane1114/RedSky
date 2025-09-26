@@ -4,11 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.Composable
+
 import com.example.redsky.data.PlaceholderCurrentWeather.sampleCurrent
 import com.example.redsky.data.PlaceholderData
 import com.example.redsky.data.PlaceholderData.forecastSample
@@ -25,8 +23,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             RedSkyTheme {
                 MaterialTheme {
-//                    CurrentWeather(current = sampleCurrent)
-                    ForecastList(forecasts = forecastSample)
+                    CurrentWeather(current = sampleCurrent)
+//                    ForecastList(forecasts = forecastSample)
                }
 
             }

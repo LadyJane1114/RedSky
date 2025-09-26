@@ -36,7 +36,7 @@ import com.example.redsky.ui.theme.DayRain
 import com.example.redsky.ui.theme.NightRain
 import com.example.redsky.ui.theme.SunnyBlue
 import com.example.redsky.ui.theme.Sunrise
-import com.example.redsky.ui.theme.Sunset
+
 
 
 fun getForecastBackgroundColor(condition:String): Color {
