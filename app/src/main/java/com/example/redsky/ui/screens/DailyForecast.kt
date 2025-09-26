@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -25,7 +26,7 @@ import com.example.redsky.ui.theme.SunnyBlue
 fun getForecastBackgroundColor(condition:String): Color {
     return when (condition.lowercase()){
         "sunny" -> SunnyBlue
-        "rainy" -> DayRain
+        "rainfall" -> DayRain
         "partly cloudy" -> SunnyBlue
         else -> Color.White
     }
@@ -34,34 +35,45 @@ fun getForecastBackgroundColor(condition:String): Color {
 fun getForecastTextColor(condition:String): Color {
     return when (condition.lowercase()){
         "sunny" -> Color.Black
-        "rainy" -> Color.White
+        "rainfall" -> Color.White
         "partly cloudy" -> Color.Black
         else -> Color.White
     }
 }
 
-@Composable
-fun ForecastList(forecasts: List<Forecast>) {
-    LazyColumn {
-        items(forecasts){ forecast -> DailyForecast(forecast)}
+fun getTodaysBackgroundColor(condition: String): Color {
+    return when (condition.lowercase()){
+        "sunny" -> SunnyBlue
+        "rainfall" -> DayRain
+        "partly cloudy" -> SunnyBlue
+        else -> Color.White
     }
 }
 
 
 @Composable
+fun ForecastList(forecasts: List<Forecast>) {
+    LazyColumn  {
+        items(forecasts){ forecast -> DailyForecast(forecast)}
+    }
+}
+
+@Composable
 fun DailyForecast (forecast: Forecast){
-    val forecastBackgroundColor = getBackgroundColor(forecast.condition)
+    val forecastBackgroundColor = getForecastBackgroundColor(forecast.condition)
     val forecastTextColor = getForecastTextColor(forecast.condition)
 
     Row(modifier = Modifier
-        .padding(17.dp)
+        .padding(0.dp,20.dp)
         .background(forecastBackgroundColor)
+        .fillMaxWidth()
     ){
         Image(
             painterResource(id = forecast.weatherImageRes),
             contentDescription = forecast.condition,
             modifier = Modifier
                 .size(50.dp)
+                .padding(2.dp)
         )
         Spacer(modifier = Modifier.width(8.dp))
 
