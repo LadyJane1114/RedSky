@@ -12,7 +12,7 @@ data class Weather (
 data class Current (
     @DrawableRes val weatherImageRes: Int,
     val condition: String,
-//    val temperature: MainActivity.Temperature,
+    val temperature: Int,
     val precipitationAmount: Int,
     val precipitationType: String,
     val windDirection: String,
@@ -22,8 +22,8 @@ data class Current (
 data class Forecast (
     val date: String,
     @DrawableRes val weatherImageRes: Int,
-//    val temperatureHigh: Temperature,
-//    val temperatureLow: Temperature,
+    val temperatureHigh: Int,
+    val temperatureLow: Int,
     val condition: String,
     val precipitationAmount: Int,
     val precipitationType: String,

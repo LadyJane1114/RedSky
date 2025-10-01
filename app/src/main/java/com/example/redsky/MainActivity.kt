@@ -23,8 +23,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             RedSkyTheme {
                 MaterialTheme {
-                    CurrentWeather(current = sampleCurrent)
-//                    ForecastList(forecasts = forecastSample)
+//                    CurrentWeather(current = sampleCurrent)
+                    ForecastList(forecasts = forecastSample)
                }
 
             }

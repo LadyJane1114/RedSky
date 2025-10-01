@@ -54,18 +54,19 @@ fun CurrentWeather(current: Current) {
                     .fillMaxWidth()
                     .padding(0.dp, 20.dp)
             )
+
+            Text(
+                text = "${current.temperature}°C",
+                style = MaterialTheme.typography.headlineLarge,
+                color = textColor
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
             Text(
                 text = current.condition,
                 style = MaterialTheme.typography.headlineMedium,
                 color = textColor
                 )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-//        Text(
-//            text = "Temperature: ${current.temperature}°C",
-//            style = MaterialTheme.typography.bodyLarge
-//        )
 
             Spacer(modifier = Modifier.height(8.dp))
 

@@ -131,6 +131,11 @@ fun DailyForecast (forecast: Forecast){
             Column {
                 Text(
                     text = forecast.date,
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = forecastTextColor
+                )
+                Text(
+                    text = "High of: ${forecast.temperatureHigh}°C    Low of: ${forecast.temperatureLow}°C",
                     style = MaterialTheme.typography.titleMedium,
                     color = forecastTextColor
                 )
