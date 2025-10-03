@@ -65,7 +65,8 @@ fun DisplayUI() {
                     titleContentColor = BannerText
                 ),
                 title = {
-                    Text("Halifax, Nova Scotia")
+                    Text("Halifax, Nova Scotia",
+                        fontSize = 26.sp)
                 }
             )
         },

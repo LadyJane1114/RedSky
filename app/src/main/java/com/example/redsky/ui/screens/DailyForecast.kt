@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.redsky.R
 import com.example.redsky.models.Forecast
 import com.example.redsky.models.Current
@@ -85,9 +86,9 @@ fun ForecastList(forecasts: List<Forecast>) {
                 item {
                     Text(
                         modifier = Modifier
-                            .padding(bottom = 5.dp),
+                            .padding(bottom = 10.dp),
                         text = "Weekly Forecast",
-                        style = MaterialTheme.typography.titleLarge,
+                        fontSize = 30.sp,
                         color = SunriseHighlight
                     )
                 }
@@ -133,29 +134,29 @@ fun DailyForecast (forecast: Forecast){
             Column {
                 Text(
                     text = forecast.date,
-                    style = MaterialTheme.typography.headlineSmall,
+                    fontSize = 26.sp,
                     color = forecastTextColor
                 )
                 Text(
                     text = "High of: ${forecast.temperatureHigh}°C    Low of: ${forecast.temperatureLow}°C",
-                    style = MaterialTheme.typography.titleMedium,
+                    fontSize = 18.sp,
                     color = forecastTextColor
                 )
                 Text(
                     text = forecast.condition,
-                    style = MaterialTheme.typography.titleSmall,
+                    fontSize = 16.sp,
                     color = forecastTextColor
                 )
                 AnimatedVisibility(visible = isExpanded) {
                     Column {
                         Text(
                             text = "Precipitation: ${forecast.precipitationAmount}mm, ${forecast.precipitationType}",
-                            style = MaterialTheme.typography.bodyMedium,
+                            fontSize = 16.sp,
                             color = forecastTextColor
                         )
                         Text(
                             text = "Wind: ${forecast.windSpeed}mph, ${forecast.windDirection}",
-                            style = MaterialTheme.typography.bodyMedium,
+                            fontSize = 16.sp,
                             color = forecastTextColor
                         )
                     }

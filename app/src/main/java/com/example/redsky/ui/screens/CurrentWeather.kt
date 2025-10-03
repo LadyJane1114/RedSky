@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.redsky.models.Current
 import com.example.redsky.ui.theme.DayRain
 import com.example.redsky.ui.theme.SunnyBlue
@@ -56,22 +57,22 @@ fun CurrentWeather(current: Current) {
 
             Text(
                 text = "${current.temperature}°C",
-                style = MaterialTheme.typography.headlineLarge,
+                fontSize = 48.sp,
                 color = textColor
             )
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
                 text = current.condition,
-                style = MaterialTheme.typography.headlineMedium,
+                fontSize = 30.sp,
                 color = textColor
                 )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
             Text(
                 text = "Precipitation: ${current.precipitationAmount}mm, ${current.precipitationType}",
-                style = MaterialTheme.typography.bodyLarge,
+                fontSize = 20.sp,
                 color = textColor
             )
 
@@ -79,7 +80,7 @@ fun CurrentWeather(current: Current) {
 
             Text(
                 text = "Wind: ${current.windSpeed}mph, ${current.windDirection}",
-                style = MaterialTheme.typography.bodyLarge,
+                fontSize = 20.sp,
                 color = textColor
             )
 
