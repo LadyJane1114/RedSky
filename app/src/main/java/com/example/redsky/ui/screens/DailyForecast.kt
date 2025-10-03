@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -30,12 +31,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.example.redsky.R
 import com.example.redsky.models.Forecast
+import com.example.redsky.models.Current
 import com.example.redsky.ui.theme.DayRain
+import com.example.redsky.ui.theme.Midnight
 import com.example.redsky.ui.theme.NightRain
 import com.example.redsky.ui.theme.SunnyBlue
 import com.example.redsky.ui.theme.Sunrise
-
+import com.example.redsky.ui.theme.SunriseHighlight
+import com.example.redsky.ui.theme.Sunset
+import com.example.redsky.ui.theme.Twilight
 
 
 fun getForecastBackgroundColor(condition:String): Color {
@@ -52,16 +58,7 @@ fun getForecastTextColor(condition:String): Color {
         "sunny" -> Color.Black
         "rainfall" -> Color.White
         "partly cloudy" -> Color.Black
-        else -> Color.White
-    }
-}
-
-fun getTodaysBackgroundColor(condition: String): Color {
-    return when (condition.lowercase()){
-        "sunny" -> SunnyBlue
-        "rainfall" -> DayRain
-        "partly cloudy" -> SunnyBlue
-        else -> Color.White
+        else -> Color.Black
     }
 }
 
@@ -71,27 +68,33 @@ fun ForecastList(forecasts: List<Forecast>) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight()
-            .background(NightRain),
+            .fillMaxHeight(),
         contentAlignment = Alignment.Center
     ) {
-        LazyColumn (
-            modifier = Modifier
-                .padding(top = 30.dp, bottom = 5.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            item {
-                Text(modifier = Modifier
-                    .padding(bottom = 5.dp),
-                    text = "Weekly Forecast",
-                    style = MaterialTheme.typography.titleLarge,
-                    color = Sunrise
+        Image(
+            painter = painterResource(id = R.drawable.red_ocean),
+            contentDescription = "Red Ocean",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
+            LazyColumn(
+                modifier = Modifier
+                    .padding(top = 30.dp, bottom = 5.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                item {
+                    Text(
+                        modifier = Modifier
+                            .padding(bottom = 5.dp),
+                        text = "Weekly Forecast",
+                        style = MaterialTheme.typography.titleLarge,
+                        color = SunriseHighlight
                     )
+                }
+                items(forecasts) { forecast -> DailyForecast(forecast) }
             }
-            items(forecasts){ forecast -> DailyForecast(forecast)}
         }
     }
-}
 
 @Composable
 fun DailyForecast (forecast: Forecast){
@@ -109,7 +112,7 @@ fun DailyForecast (forecast: Forecast){
         Row(modifier = Modifier
             .background(forecastBackgroundColor,RoundedCornerShape(15.dp))
             .fillMaxWidth(0.9F)
-            .border(2.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(15.dp))
+            .border(2.dp, Sunset, RoundedCornerShape(15.dp))
             .padding(12.dp)
             .clickable { isExpanded = !isExpanded }
 

@@ -52,7 +52,6 @@ fun CurrentWeather(current: Current) {
                 contentDescription = current.condition,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(0.dp, 20.dp)
             )
 
             Text(

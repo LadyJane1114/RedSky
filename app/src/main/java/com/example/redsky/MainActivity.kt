@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.ui.Modifier
@@ -13,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -22,11 +24,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
 import com.example.redsky.data.PlaceholderCurrentWeather
+import com.example.redsky.data.PlaceholderCurrentWeather.sampleCurrent
 import com.example.redsky.data.PlaceholderData
 import com.example.redsky.data.PlaceholderData.forecastSample
 
@@ -34,7 +41,14 @@ import com.example.redsky.data.PlaceholderData.forecastSample
 import com.example.redsky.ui.screens.CurrentWeather
 import com.example.redsky.ui.screens.DailyForecast
 import com.example.redsky.ui.screens.ForecastList
+import com.example.redsky.ui.theme.BannerHighlight
+import com.example.redsky.ui.theme.BannerRed
+import com.example.redsky.ui.theme.BannerText
+import com.example.redsky.ui.theme.Pink80
 import com.example.redsky.ui.theme.RedSkyTheme
+import com.example.redsky.ui.theme.Sunrise
+import com.example.redsky.ui.theme.SunriseHighlight
+import com.example.redsky.ui.theme.Sunset
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -47,8 +61,8 @@ fun DisplayUI() {
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary
+                    containerColor = BannerRed,
+                    titleContentColor = BannerText
                 ),
                 title = {
                     Text("Halifax, Nova Scotia")
@@ -57,42 +71,64 @@ fun DisplayUI() {
         },
         bottomBar = {
             NavigationBar(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.primary
+                containerColor = BannerRed,
+                contentColor = BannerText
             )
             {
                 NavigationBarItem(
                     label = {
-                        Text("Current")
+                        Text("Current",
+                            fontSize = 16.sp)
                     },
                     icon = {
                         Icon(
                             painter = painterResource(R.drawable.sailing_boat),
-                            contentDescription = "Boat Icon"
+                            contentDescription = "Boat Icon",
+                            modifier = Modifier.size(32.dp)
                         )
                     },
                     selected = selectedItem == 0,
                     onClick = {
                         selectedItem = 0
                         navController.navigate("Current")
-                    }
+                    },
+                    colors = NavigationBarItemColors(
+                        selectedIconColor = BannerText,
+                        unselectedIconColor = BannerText,
+                        selectedTextColor = BannerText,
+                        unselectedTextColor = BannerText,
+                        selectedIndicatorColor = Sunrise,
+                        disabledIconColor = Transparent,
+                        disabledTextColor = BannerText,
+                    )
                 )
 
                 NavigationBarItem(
                     label = {
-                        Text("Forecast")
+                        Text("Forecast",
+                            fontSize = 16.sp)
                     },
                     icon = {
                         Icon(
                             painter = painterResource(R.drawable.telescope),
-                            contentDescription = "telescope Icon"
+                            contentDescription = "telescope Icon",
+                            modifier = Modifier.size(32.dp)
                         )
                     },
                     selected = selectedItem == 1,
                     onClick = {
                         selectedItem= 1
                         navController.navigate("Forecast")
-                    }
+                    },
+                    colors = NavigationBarItemColors(
+                        selectedIconColor = BannerText,
+                        unselectedIconColor = BannerText,
+                        selectedTextColor = BannerText,
+                        unselectedTextColor = BannerText,
+                        selectedIndicatorColor = Sunrise,
+                        disabledIconColor = Transparent,
+                        disabledTextColor = BannerText,
+                    )
                 )
             }
         }
@@ -110,7 +146,7 @@ fun DisplayUI() {
             }
             composable(route = "Forecast")
             {
-                ForecastList(PlaceholderData.forecastSample)
+                ForecastList(forecastSample)
             }
         }
     }
