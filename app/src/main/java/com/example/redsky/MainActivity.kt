@@ -143,7 +143,7 @@ fun DisplayUI() {
         {
             composable(route = "Current")
             {
-                CurrentWeather(PlaceholderCurrentWeather.sampleCurrent)
+                CurrentWeather(sampleCurrent)
             }
             composable(route = "Forecast")
             {
@@ -165,7 +165,6 @@ class MainActivity : ComponentActivity() {
                 MaterialTheme {
                     DisplayUI()
                }
-
             }
         }
     }
