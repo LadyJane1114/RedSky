@@ -21,6 +21,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,6 +33,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.redsky.MainViewModel
 import com.example.redsky.R
 import com.example.redsky.models.Forecast
 import com.example.redsky.models.Current
@@ -65,7 +67,13 @@ fun getForecastTextColor(condition:String): Color {
 
 
 @Composable
-fun ForecastList(forecasts: List<Forecast>) {
+fun ForecastList(mainViewModel: MainViewModel) {
+
+    val weather by mainViewModel.weather.collectAsState()
+    val forecasts = weather?.forecast
+
+
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -78,24 +86,16 @@ fun ForecastList(forecasts: List<Forecast>) {
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
-            LazyColumn(
-                modifier = Modifier
-                    .padding(top = 30.dp, bottom = 5.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                item {
-                    Text(
-                        modifier = Modifier
-                            .padding(bottom = 10.dp),
-                        text = "Weekly Forecast",
-                        fontSize = 30.sp,
-                        color = SunriseHighlight
-                    )
+        if (forecasts != null){
+            LazyColumn {
+                items(forecasts) { forecast ->
+                    DailyForecast(forecast)
                 }
-                items(forecasts) { forecast -> DailyForecast(forecast) }
             }
         }
     }
+}
+
 
 @Composable
 fun DailyForecast (forecast: Forecast){

@@ -12,12 +12,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.redsky.MainViewModel
 import com.example.redsky.models.Current
 import com.example.redsky.ui.theme.DayRain
 import com.example.redsky.ui.theme.SunnyBlue
@@ -25,7 +28,7 @@ import com.example.redsky.ui.theme.SunnyBlue
 fun getBackgroundColor(condition:String): Color {
     return when (condition.lowercase()) {
         "sunny" -> SunnyBlue
-        "rainy" -> DayRain
+        "rainfall" -> DayRain
         else -> Color.White
     }
 }
@@ -33,14 +36,17 @@ fun getBackgroundColor(condition:String): Color {
 fun getTextColor(condition: String): Color {
     return when (condition.lowercase()) {
         "sunny" -> Color.Black
-        "rainy" -> Color.White
+        "rainfall" -> Color.White
         else -> Color.Black
     }
 }
 @Composable
-fun CurrentWeather(current: Current) {
-    val backgroundColor = getBackgroundColor(current.condition)
-    val textColor = getTextColor(current.condition)
+fun CurrentWeather(mainViewModel: MainViewModel) {
+    val weather by mainViewModel.weather.collectAsState()
+
+    val condition = weather?.current?.condition!!
+    val backgroundColor = getBackgroundColor(condition)
+    val textColor = getTextColor(condition)
 
     Box(
         modifier = Modifier
@@ -49,21 +55,21 @@ fun CurrentWeather(current: Current) {
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Image(
-                painter = painterResource(id = current.weatherImageRes),
-                contentDescription = current.condition,
+                painter = painterResource(id = weather?.current?.weatherImageRes!!),
+                contentDescription = weather?.current?.condition,
                 modifier = Modifier
                     .fillMaxWidth()
             )
 
             Text(
-                text = "${current.temperature}°C",
+                text = "${weather?.current?.temperature}°C",
                 fontSize = 48.sp,
                 color = textColor
             )
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = current.condition,
+                text = weather!!.current.condition,
                 fontSize = 30.sp,
                 color = textColor
                 )
@@ -71,7 +77,7 @@ fun CurrentWeather(current: Current) {
             Spacer(modifier = Modifier.height(15.dp))
 
             Text(
-                text = "Precipitation: ${current.precipitationAmount}mm, ${current.precipitationType}",
+                text = "Precipitation: ${weather?.current?.precipitationAmount}mm, ${weather?.current?.precipitationType}",
                 fontSize = 20.sp,
                 color = textColor
             )
@@ -79,8 +85,17 @@ fun CurrentWeather(current: Current) {
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "Wind: ${current.windSpeed}mph, ${current.windDirection}",
+                text = "Wind: ${weather?.current?.windSpeed}mph, ${weather?.current?.windDirection}",
                 fontSize = 20.sp,
+                color = textColor
+            )
+
+            Spacer(modifier = Modifier.height(30.dp))
+
+            // Need to figure out how to make Date Dynamic, but potentially that's in the API? We'll see.
+            Text(
+                text = "${weather?.current?.currentDate}",
+                fontSize = 30.sp,
                 color = textColor
             )
 
