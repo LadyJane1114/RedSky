@@ -1,4 +1,4 @@
-//package com.example.redsky.data
+package com.example.redsky.data
 //
 //import com.example.redsky.R
 //import com.example.redsky.models.Current
@@ -25,3 +25,6 @@
 //        )
 //
 //}
+
+
+// Left in for educational purposes

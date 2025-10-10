@@ -36,15 +36,9 @@ import androidx.compose.ui.unit.sp
 import com.example.redsky.MainViewModel
 import com.example.redsky.R
 import com.example.redsky.models.Forecast
-import com.example.redsky.models.Current
 import com.example.redsky.ui.theme.DayRain
-import com.example.redsky.ui.theme.Midnight
-import com.example.redsky.ui.theme.NightRain
 import com.example.redsky.ui.theme.SunnyBlue
-import com.example.redsky.ui.theme.Sunrise
-import com.example.redsky.ui.theme.SunriseHighlight
 import com.example.redsky.ui.theme.Sunset
-import com.example.redsky.ui.theme.Twilight
 
 
 fun getForecastBackgroundColor(condition:String): Color {

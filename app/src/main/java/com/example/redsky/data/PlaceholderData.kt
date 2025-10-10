@@ -1,6 +1,6 @@
-//package com.example.redsky.data
-//import com.example.redsky.R
-//import com.example.redsky.models.Forecast
+package com.example.redsky.data
+import com.example.redsky.R
+import com.example.redsky.models.Forecast
 //
 //object PlaceholderData {
 //    //placeholder data for the forecast page
@@ -71,3 +71,6 @@
 //        ),
 //    )
 //}
+
+
+// Left in for educational purposes

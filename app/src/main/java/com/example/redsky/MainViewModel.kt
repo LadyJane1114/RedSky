@@ -8,8 +8,7 @@ import com.example.redsky.models.Forecast
 import com.example.redsky.models.Weather
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import java.time.LocalDate
-import java.time.LocalDateTime
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 class MainViewModel : ViewModel(){

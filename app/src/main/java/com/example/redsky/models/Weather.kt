@@ -1,9 +1,7 @@
 package com.example.redsky.models
 
-import android.health.connect.datatypes.units.Temperature
 import androidx.annotation.DrawableRes
-import com.example.redsky.MainActivity
-import java.time.LocalDate
+
 
 data class Weather (
     val current: Current,
