@@ -1,5 +1,7 @@
 package com.example.redsky.ui.screens
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -60,6 +62,7 @@ fun getForecastTextColor(condition:String): Color {
 }
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ForecastList(mainViewModel: MainViewModel) {
 
@@ -93,8 +96,8 @@ fun ForecastList(mainViewModel: MainViewModel) {
 
 @Composable
 fun DailyForecast (forecast: Forecast){
-    val forecastBackgroundColor = getForecastBackgroundColor(forecast.condition)
-    val forecastTextColor = getForecastTextColor(forecast.condition)
+    val forecastBackgroundColor = getForecastBackgroundColor(forecast.condition.text)
+    val forecastTextColor = getForecastTextColor(forecast.condition.text)
     var isExpanded by remember { mutableStateOf(false) }
 
 //    Box added to help center things properly and make it look nicer
@@ -114,7 +117,7 @@ fun DailyForecast (forecast: Forecast){
         ){
             Image(
                 painterResource(id = forecast.weatherImageRes),
-                contentDescription = forecast.condition,
+                contentDescription = forecast.condition.text,
                 modifier = Modifier
                     .size(50.dp)
                     .background(color = MaterialTheme.colorScheme.primary, RoundedCornerShape(15.dp))
@@ -137,14 +140,14 @@ fun DailyForecast (forecast: Forecast){
                     color = forecastTextColor
                 )
                 Text(
-                    text = forecast.condition,
+                    text = forecast.condition.text,
                     fontSize = 16.sp,
                     color = forecastTextColor
                 )
                 AnimatedVisibility(visible = isExpanded) {
                     Column {
                         Text(
-                            text = "Precipitation: ${forecast.precipitationAmount}mm, ${forecast.precipitationType}",
+                            text = "Precipitation: ${forecast.precipitationAmount}mm",
                             fontSize = 16.sp,
                             color = forecastTextColor
                         )

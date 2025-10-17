@@ -1,5 +1,7 @@
 package com.example.redsky.ui.screens
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -37,13 +39,14 @@ fun getTextColor(condition: String): Color {
         else -> Color.Black
     }
 }
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun CurrentWeather(mainViewModel: MainViewModel) {
     val weather by mainViewModel.weather.collectAsState()
 
     val condition = weather?.current?.condition!!
-    val backgroundColor = getBackgroundColor(condition)
-    val textColor = getTextColor(condition)
+    val backgroundColor = getBackgroundColor(condition.text)
+    val textColor = getTextColor(condition.text)
 
     Box(
         modifier = Modifier
@@ -53,7 +56,7 @@ fun CurrentWeather(mainViewModel: MainViewModel) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Image(
                 painter = painterResource(id = weather?.current?.weatherImageRes!!),
-                contentDescription = weather?.current?.condition,
+                contentDescription = weather?.current?.condition?.text,
                 modifier = Modifier
                     .fillMaxWidth()
             )
@@ -66,7 +69,14 @@ fun CurrentWeather(mainViewModel: MainViewModel) {
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = weather!!.current.condition,
+                text = "Feels like: ${weather?.current?.feelsLike}°C",
+                fontSize = 20.sp,
+                color = textColor
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = weather!!.current.condition.text,
                 fontSize = 30.sp,
                 color = textColor
                 )
@@ -74,7 +84,7 @@ fun CurrentWeather(mainViewModel: MainViewModel) {
             Spacer(modifier = Modifier.height(15.dp))
 
             Text(
-                text = "Precipitation: ${weather?.current?.precipitationAmount}mm, ${weather?.current?.precipitationType}",
+                text = "Precipitation: ${weather?.current?.precipitationAmount}mm",
                 fontSize = 20.sp,
                 color = textColor
             )

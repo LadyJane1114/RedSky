@@ -58,6 +58,13 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    //User added
+    ///user added
+
     implementation(libs.androidx.navigation.compose)
+
+    implementation("io.coil-kt:coil-compose:2.7.0")
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+    // Retrofit GSON Converter
+    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
 }
