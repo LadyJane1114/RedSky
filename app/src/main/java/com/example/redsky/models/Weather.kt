@@ -1,16 +1,26 @@
 package com.example.redsky.models
 
+import android.location.Location
 import androidx.annotation.DrawableRes
 import com.google.gson.annotations.SerializedName
 
 
 data class Weather (
+    @SerializedName("location")
+    val myLocation: MyLocation,
     val current: Current,
-    val forecast: List<Forecast>
+    val forecast: Forecast
+)
+data class MyLocation(
+    val name: String,
+    val region: String,
+    val country: String,
+    val lat: Float,
+    val lon: Float,
+    val localtime: String
 )
 
 data class Current (
-    @DrawableRes val weatherImageRes: Int, //Going to have to get rid of this and do it a different way (same way as the other background/font stuff)
     val condition: Condition,
     @SerializedName ("temp_c")
     val temperature: Float,
@@ -23,13 +33,22 @@ data class Current (
     @SerializedName("wind_kph")
     val windSpeed: Float,
     @SerializedName("last_updated")
-    val currentDate: String // Figure out a way to format this nicely, because the way it's formatted in the API is gross
+    val currentDate: String,
+    @SerializedName("is_day")
+    val isDay: Int// Figure out a way to format this nicely, because the way it's formatted in the API is gross
 
 )
+data class Forecast(
+    val forecastDay: List<ForecastDay>
+)
 
-data class Forecast (
-    val date: String, // same note as above
-    @DrawableRes val weatherImageRes: Int, // Same as above probably?
+data class ForecastDay (
+    val date: String,
+    val day: Day
+//    val astro: Astro // including this for later if I have time to use it
+)
+
+data class Day (
     @SerializedName("maxtemp_c")
     val temperatureHigh: Float,
     @SerializedName("mintemp_c")
@@ -37,12 +56,12 @@ data class Forecast (
     val condition: Condition,
     @SerializedName("totalprecip_mm")
     val precipitationAmount: Float,
-//    @SerializedName("totalsnow_cm")
-//    val snowAmount: Float, // for later
+    @SerializedName("totalsnow_cm")
+    val snowAmount: Float, // for later
     @SerializedName("daily_chance_of_rain")
     val precipitationProbability: Float,
-//    @SerializedName("daily_chance_of_snow")
-//    val showProbability:Float, // for later
+    @SerializedName("daily_chance_of_snow")
+    val showProbability:Float, // for later
     @SerializedName("wind_dir")
     val windDirection: String,
     @SerializedName("maxwind_kph")
@@ -51,5 +70,11 @@ data class Forecast (
 )
 
 data class Condition (
-    val text: String
+    val text: String,
+    val icon: String
 )
+
+//data class Astro (
+//    @SerializedName("moon_phase")
+//    val moonPhase: String
+//) for later

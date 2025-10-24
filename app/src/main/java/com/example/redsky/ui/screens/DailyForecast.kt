@@ -35,31 +35,16 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberAsyncImagePainter
 import com.example.redsky.MainViewModel
 import com.example.redsky.R
 import com.example.redsky.models.Forecast
+import com.example.redsky.models.ForecastDay
 import com.example.redsky.ui.theme.DayRain
 import com.example.redsky.ui.theme.SunnyBlue
 import com.example.redsky.ui.theme.Sunset
-
-
-fun getForecastBackgroundColor(condition:String): Color {
-    return when (condition.lowercase()){
-        "sunny" -> SunnyBlue
-        "rainfall" -> DayRain
-        "partly cloudy" -> SunnyBlue
-        else -> Color.White
-    }
-}
-
-fun getForecastTextColor(condition:String): Color {
-    return when (condition.lowercase()){
-        "sunny" -> Color.Black
-        "rainfall" -> Color.White
-        "partly cloudy" -> Color.Black
-        else -> Color.Black
-    }
-}
+import com.example.redsky.utilities.getForecastBackgroundColor
+import com.example.redsky.utilities.getForecastTextColor
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -67,9 +52,7 @@ fun getForecastTextColor(condition:String): Color {
 fun ForecastList(mainViewModel: MainViewModel) {
 
     val weather by mainViewModel.weather.collectAsState()
-    val forecasts = weather?.forecast
-
-
+    val forecasts = weather?.forecast?.forecastDay
 
     Box(
         modifier = Modifier
@@ -85,8 +68,8 @@ fun ForecastList(mainViewModel: MainViewModel) {
         )
         if (forecasts != null){
             LazyColumn {
-                items(forecasts) { forecast ->
-                    DailyForecast(forecast)
+                items(forecasts) { forecastDay ->
+                    DailyForecast(forecastDay)
                 }
             }
         }
@@ -95,7 +78,8 @@ fun ForecastList(mainViewModel: MainViewModel) {
 
 
 @Composable
-fun DailyForecast (forecast: Forecast){
+fun DailyForecast (forecastDay: ForecastDay){
+    val forecast = forecastDay.day
     val forecastBackgroundColor = getForecastBackgroundColor(forecast.condition.text)
     val forecastTextColor = getForecastTextColor(forecast.condition.text)
     var isExpanded by remember { mutableStateOf(false) }
@@ -116,7 +100,7 @@ fun DailyForecast (forecast: Forecast){
 
         ){
             Image(
-                painterResource(id = forecast.weatherImageRes),
+                rememberAsyncImagePainter(forecastDay?.day?.condition?.icon),
                 contentDescription = forecast.condition.text,
                 modifier = Modifier
                     .size(50.dp)
@@ -130,7 +114,7 @@ fun DailyForecast (forecast: Forecast){
 
             Column {
                 Text(
-                    text = forecast.date,
+                    text = forecastDay?.day.toString(),
                     fontSize = 26.sp,
                     color = forecastTextColor
                 )

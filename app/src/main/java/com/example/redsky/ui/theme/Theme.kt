@@ -32,6 +32,11 @@ private val LightColorScheme = lightColorScheme(
     onSurface = Color(0xFF1C1B1F),
     */
 )
+private val NavColorScheme = lightColorScheme(
+    primary = BannerRed,
+    secondary = BannerText,
+    tertiary = Sunrise
+)
 
 @Composable
 fun RedSkyTheme(

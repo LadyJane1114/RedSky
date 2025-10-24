@@ -23,26 +23,21 @@ import androidx.compose.ui.unit.sp
 import com.example.redsky.MainViewModel
 import com.example.redsky.ui.theme.DayRain
 import com.example.redsky.ui.theme.SunnyBlue
+import com.example.redsky.utilities.getBackgroundColor
+import com.example.redsky.utilities.getTextColor
 
-fun getBackgroundColor(condition:String): Color {
-    return when (condition.lowercase()) {
-        "sunny" -> SunnyBlue
-        "rainfall" -> DayRain
-        else -> Color.White
-    }
-}
-
-fun getTextColor(condition: String): Color {
-    return when (condition.lowercase()) {
-        "sunny" -> Color.Black
-        "rainfall" -> Color.White
-        else -> Color.Black
-    }
-}
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun CurrentWeather(mainViewModel: MainViewModel) {
     val weather by mainViewModel.weather.collectAsState()
+
+    if (weather == null){
+        Text("Loading weather data...",
+            fontSize = 20.sp,
+            color = Color.Gray)
+        return
+    }
+
 
     val condition = weather?.current?.condition!!
     val backgroundColor = getBackgroundColor(condition.text)
