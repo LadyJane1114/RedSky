@@ -10,6 +10,7 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
+
 val SunnyBlue = Color(0xFFCBE0F8)
 val DayRain = Color(0xFF313B42)
 val Midnight = Color(0xFF14161C)
@@ -17,8 +18,9 @@ val NightRain = Color(0xFF2C2932)
 val Twilight = Color(0xFF32251E)
 val Sunrise: Color = Color(0xFFED9A77)
 val Sunset: Color = Color(0xFF703840)
-
 val SunriseHighlight: Color = Color(0xFFf7ae8f)
+
+
 
 val BannerRed: Color = Color (0xFFc43d3b)
 val BannerHighlight: Color = Color (0xFFf55d5d)
