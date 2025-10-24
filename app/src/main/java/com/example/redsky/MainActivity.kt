@@ -126,7 +126,7 @@ class MainActivity : ComponentActivity() {
                         },
                         icon = {
                             Icon(
-                                painter = painterResource(R.drawable.sailing_boat),
+                                painter = painterResource(R.drawable.nav_sailing_boat),
                                 contentDescription = "Boat Icon",
                                 modifier = Modifier.size(40.dp)
                             )
@@ -154,7 +154,7 @@ class MainActivity : ComponentActivity() {
                         },
                         icon = {
                             Icon(
-                                painter = painterResource(R.drawable.telescope),
+                                painter = painterResource(R.drawable.nav_telescope),
                                 contentDescription = "telescope Icon",
                                 modifier = Modifier.size(40.dp)
                             )

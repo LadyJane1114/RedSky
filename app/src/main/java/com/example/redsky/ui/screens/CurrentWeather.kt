@@ -23,8 +23,14 @@ import androidx.compose.ui.unit.sp
 import com.example.redsky.MainViewModel
 import com.example.redsky.ui.theme.DayRain
 import com.example.redsky.ui.theme.SunnyBlue
-import com.example.redsky.utilities.getBackgroundColor
-import com.example.redsky.utilities.getTextColor
+import com.example.redsky.utilities.getCurrentDayImage
+import com.example.redsky.utilities.getCurrentNightImage
+import com.example.redsky.utilities.getDayBGColor
+import com.example.redsky.utilities.getDayTextColor
+import com.example.redsky.utilities.getNightBGColor
+import com.example.redsky.utilities.getNightTextColor
+
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -38,10 +44,22 @@ fun CurrentWeather(mainViewModel: MainViewModel) {
         return
     }
 
-
     val condition = weather?.current?.condition!!
-    val backgroundColor = getBackgroundColor(condition.text)
-    val textColor = getTextColor(condition.text)
+    val isDay = weather?.current?.isDay == 1
+
+    val weatherImage: Int
+    val backgroundColor: Color
+    val textColor: Color
+
+    if(isDay){
+        weatherImage = getCurrentDayImage(condition.text)
+        backgroundColor = getDayBGColor(condition.text)
+        textColor = getDayTextColor(condition.text)
+    } else {
+        weatherImage = getCurrentNightImage(condition.text)
+        backgroundColor = getNightBGColor(condition.text)
+        textColor = getNightTextColor(condition.text)
+    }
 
     Box(
         modifier = Modifier
@@ -50,7 +68,7 @@ fun CurrentWeather(mainViewModel: MainViewModel) {
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Image(
-                painter = painterResource(id = weather?.current?.weatherImageRes!!),
+                painter = painterResource(id = weatherImage),
                 contentDescription = weather?.current?.condition?.text,
                 modifier = Modifier
                     .fillMaxWidth()

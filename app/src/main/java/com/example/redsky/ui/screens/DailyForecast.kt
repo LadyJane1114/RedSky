@@ -43,8 +43,8 @@ import com.example.redsky.models.ForecastDay
 import com.example.redsky.ui.theme.DayRain
 import com.example.redsky.ui.theme.SunnyBlue
 import com.example.redsky.ui.theme.Sunset
-import com.example.redsky.utilities.getForecastBackgroundColor
-import com.example.redsky.utilities.getForecastTextColor
+import com.example.redsky.utilities.getDayBGColor
+import com.example.redsky.utilities.getDayTextColor
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -61,7 +61,7 @@ fun ForecastList(mainViewModel: MainViewModel) {
         contentAlignment = Alignment.Center
     ) {
         Image(
-            painter = painterResource(id = R.drawable.red_ocean),
+            painter = painterResource(id = R.drawable.forecast_red_ocean),
             contentDescription = "Red Ocean",
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
@@ -80,8 +80,8 @@ fun ForecastList(mainViewModel: MainViewModel) {
 @Composable
 fun DailyForecast (forecastDay: ForecastDay){
     val forecast = forecastDay.day
-    val forecastBackgroundColor = getForecastBackgroundColor(forecast.condition.text)
-    val forecastTextColor = getForecastTextColor(forecast.condition.text)
+    val forecastBackgroundColor = getDayBGColor(forecast.condition.text)
+    val forecastTextColor = getDayTextColor(forecast.condition.text)
     var isExpanded by remember { mutableStateOf(false) }
 
 //    Box added to help center things properly and make it look nicer
