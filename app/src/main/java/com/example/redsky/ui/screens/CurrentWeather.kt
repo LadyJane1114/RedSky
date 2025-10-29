@@ -21,14 +21,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.redsky.MainViewModel
-import com.example.redsky.ui.theme.DayRain
-import com.example.redsky.ui.theme.SunnyBlue
 import com.example.redsky.utilities.getCurrentDayImage
 import com.example.redsky.utilities.getCurrentNightImage
 import com.example.redsky.utilities.getDayBGColor
 import com.example.redsky.utilities.getDayTextColor
 import com.example.redsky.utilities.getNightBGColor
-import com.example.redsky.utilities.getNightTextColor
+
 
 
 
@@ -58,7 +56,7 @@ fun CurrentWeather(mainViewModel: MainViewModel) {
     } else {
         weatherImage = getCurrentNightImage(condition.text)
         backgroundColor = getNightBGColor(condition.text)
-        textColor = getNightTextColor(condition.text)
+        textColor = Color.White
     }
 
     Box(
@@ -93,14 +91,6 @@ fun CurrentWeather(mainViewModel: MainViewModel) {
                 fontSize = 30.sp,
                 color = textColor
                 )
-
-            Spacer(modifier = Modifier.height(15.dp))
-
-            Text(
-                text = "Precipitation: ${weather?.current?.precipitationAmount}mm",
-                fontSize = 20.sp,
-                color = textColor
-            )
 
             Spacer(modifier = Modifier.height(8.dp))
 

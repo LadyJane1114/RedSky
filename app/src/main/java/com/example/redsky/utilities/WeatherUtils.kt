@@ -14,6 +14,9 @@ import com.example.redsky.ui.theme.LRainDay
 import com.example.redsky.ui.theme.LRainNight
 import com.example.redsky.ui.theme.LRainNoSunDay
 import com.example.redsky.ui.theme.LRainNoSunNight
+import com.example.redsky.ui.theme.LSnowClearNight
+import com.example.redsky.ui.theme.LSnowSunDay
+import com.example.redsky.ui.theme.ModRainNoSunNight
 import com.example.redsky.ui.theme.PartCloudDay
 import com.example.redsky.ui.theme.PartCloudNight
 import com.example.redsky.ui.theme.ThunderDay
@@ -33,10 +36,10 @@ fun getDayBGColor(condition:String): Color {
         "mist" -> PartCloudDay
         "patchy rain nearby" -> LRainDay
         "patchy light rain" -> LRainDay
-        "patchy snow nearby" -> 
-        "patchy sleet nearby" ->
-        "patchy freezing drizzle nearby" ->
-        "thundery outbreaks in nearby" ->
+        "patchy snow nearby" -> LSnowSunDay
+        "patchy sleet nearby" -> LSnowSunDay
+        "patchy freezing drizzle nearby" -> LSnowSunDay
+        "thundery outbreaks in nearby" -> ThunderDay
         "blowing snow" -> Blizzard
         "blizzard" -> Blizzard
         "fog" -> FogDay
@@ -50,25 +53,25 @@ fun getDayBGColor(condition:String): Color {
         "moderate rain" -> LRainNoSunDay
         "heavy rain at times" -> PartCloudDay
         "heavy rain" -> CloudyDay
-        "light freezing rain" ->
+        "light freezing rain" -> LSnowSunDay
         "moderate or heavy freezing rain" -> LRainNoSunDay
         "light sleet" -> LRainNoSunDay
         "moderate or heavy sleet" -> LRainNoSunDay
-        "patchy light snow" ->
+        "patchy light snow" -> LSnowSunDay
         "light snow" -> LRainNoSunDay
         "patchy moderate snow" -> LRainNoSunDay
         "moderate snow" -> LRainNoSunDay
-        "patchy heavy snow" ->
+        "patchy heavy snow" -> LSnowSunDay
         "heavy snow" -> CloudyDay
         "ice pellets" -> LRainNoSunDay
         "light rain shower" -> LRainDay
         "moderate or heavy rain shower" -> PartCloudDay
         "torrential rain shower" -> TorrentialDay
-        "light sleet showers" ->
+        "light sleet showers" -> LSnowSunDay
         "moderate or heavy sleet showers" -> LRainNoSunDay
-        "light snow showers" ->
-        "moderate or heavy snow showers" ->
-        "light showers of ice pellets" ->
+        "light snow showers" -> LSnowSunDay
+        "moderate or heavy snow showers" -> LSnowSunDay
+        "light showers of ice pellets" -> LSnowSunDay
         "moderate or heavy showers of ice pellets" -> LRainNoSunDay
         "patchy light rain in area with thunder" -> ThunderDay
         "moderate or heavy rain in area with thunder" -> ThunderDay
@@ -82,20 +85,20 @@ fun getNightBGColor(condition:String): Color {
         "clear" -> Midnight
         "cloudy" -> CloudyNight
         "partly cloudy" -> PartCloudNight
-        "overcast" ->
+        "overcast" -> CloudyNight
         "mist" -> PartCloudNight
         "patchy rain nearby" -> LRainNight
         "patchy light rain" -> LRainNight
-        "patchy snow nearby" ->
-        "patchy sleet nearby" ->
-        "patchy freezing drizzle nearby" ->
-        "thundery outbreaks in nearby" ->
+        "patchy snow nearby" -> LSnowClearNight
+        "patchy sleet nearby" -> LSnowClearNight
+        "patchy freezing drizzle nearby" -> LSnowClearNight
+        "thundery outbreaks in nearby" -> ThunderNight
         "blowing snow" -> Blizzard
         "blizzard" -> Blizzard
         "fog" -> CloudyNight
         "freezing fog" -> CloudyNight
-        "patchy light drizzle" ->
-        "light drizzle" ->
+        "patchy light drizzle" -> ModRainNoSunNight
+        "light drizzle" -> ModRainNoSunNight
         "freezing drizzle" -> LRainNoSunNight
         "heavy freezing drizzle" -> CloudyNight
         "light rain" -> LRainNoSunNight
@@ -103,25 +106,25 @@ fun getNightBGColor(condition:String): Color {
         "moderate rain" -> LRainNoSunNight
         "heavy rain at times" -> LRainNight
         "heavy rain" -> CloudyNight
-        "light freezing rain" ->
+        "light freezing rain" -> LSnowClearNight
         "moderate or heavy freezing rain" -> LRainNoSunNight
         "light sleet" -> LRainNoSunNight
         "moderate or heavy sleet" -> LRainNoSunNight
-        "patchy light snow" ->
+        "patchy light snow" -> LSnowClearNight
         "light snow" -> LRainNoSunNight
         "patchy moderate snow" -> LRainNoSunNight
         "moderate snow" -> LRainNoSunNight
-        "patchy heavy snow" ->
+        "patchy heavy snow" -> LSnowClearNight
         "heavy snow" -> CloudyNight
         "ice pellets" -> LRainNoSunNight
         "light rain shower" -> LRainNight
         "moderate or heavy rain shower" -> LRainNight
         "torrential rain shower" -> TorrentialNight
-        "light sleet showers" ->Color.Black
+        "light sleet showers" -> LSnowClearNight
         "moderate or heavy sleet showers" -> LRainNoSunNight
-        "light snow showers" ->
-        "moderate or heavy snow showers" ->
-        "light showers of ice pellets" ->
+        "light snow showers" -> LSnowClearNight
+        "moderate or heavy snow showers" -> LSnowClearNight
+        "light showers of ice pellets" -> LSnowClearNight
         "moderate or heavy showers of ice pellets" -> LRainNoSunNight
         "patchy light rain in area with thunder" -> ThunderNight
         "moderate or heavy rain in area with thunder" ->  ThunderNight
@@ -133,110 +136,110 @@ fun getNightBGColor(condition:String): Color {
 
 fun getDayTextColor(condition: String): Color {
     return when (condition.lowercase()) {
-        "sunny" -> SunnyBlue
-        "cloudy" -> SunnyBlue
-        "partly cloudy" -> SunnyBlue
-        "overcast" -> SunnyBlue
-        "mist" -> SunnyBlue
-        "patchy rain nearby" -> SunnyBlue
-        "patchy light rain" -> SunnyBlue
-        "patchy snow nearby" -> SunnyBlue
-        "patchy sleet nearby" -> SunnyBlue
-        "patchy freezing drizzle nearby" -> SunnyBlue
-        "thundery outbreaks in nearby" -> SunnyBlue
-        "blowing snow" -> SunnyBlue
-        "blizzard" -> SunnyBlue
-        "fog" -> SunnyBlue
-        "freezing fog" -> SunnyBlue
-        "patchy light drizzle" -> SunnyBlue
-        "light drizzle" -> SunnyBlue
-        "freezing drizzle" -> SunnyBlue
-        "heavy freezing drizzle" -> SunnyBlue
-        "light rain" -> SunnyBlue
-        "moderate rain at times" -> SunnyBlue
-        "moderate rain" -> SunnyBlue
-        "heavy rain at times" -> SunnyBlue
-        "heavy rain" -> SunnyBlue
-        "light freezing rain" -> SunnyBlue
-        "moderate or heavy freezing rain" -> SunnyBlue
-        "light sleet" -> SunnyBlue
-        "moderate or heavy sleet" -> SunnyBlue
-        "patchy light snow" -> SunnyBlue
-        "light snow" -> SunnyBlue
-        "patchy moderate snow" -> SunnyBlue
-        "moderate snow" -> SunnyBlue
-        "patchy heavy snow" -> SunnyBlue
-        "heavy snow" -> SunnyBlue
-        "ice pellets" -> SunnyBlue
-        "light rain shower" -> SunnyBlue
-        "moderate or heavy rain shower" -> SunnyBlue
-        "torrential rain shower" -> SunnyBlue
-        "light sleet showers" -> SunnyBlue
-        "moderate or heavy sleet showers" -> SunnyBlue
-        "light snow showers" -> SunnyBlue
-        "moderate or heavy snow showers" -> SunnyBlue
-        "light showers of ice pellets" -> SunnyBlue
-        "moderate or heavy showers of ice pellets" -> SunnyBlue
-        "patchy light rain in area with thunder" -> SunnyBlue
-        "moderate or heavy rain in area with thunder" -> SunnyBlue
-        "patchy light snow in area with thunder" -> SunnyBlue
-        "moderate or heavy snow in area with thunder" -> SunnyBlue
+        "sunny" -> Color.Black
+        "cloudy" -> Color.White
+        "partly cloudy" -> Color.Black
+        "overcast" -> Color.White
+        "mist" -> Color.Black
+        "patchy rain nearby" -> Color.Black
+        "patchy light rain" -> Color.Black
+        "patchy snow nearby" -> Color.Black
+        "patchy sleet nearby" -> Color.Black
+        "patchy freezing drizzle nearby" -> Color.Black
+        "thundery outbreaks in nearby" -> Color.White
+        "blowing snow" -> Color.White
+        "blizzard" -> Color.White
+        "fog" -> Color.Black
+        "freezing fog" -> Color.White
+        "patchy light drizzle" -> Color.Black
+        "light drizzle" -> Color.Black
+        "freezing drizzle" -> Color.Black
+        "heavy freezing drizzle" -> Color.White
+        "light rain" -> Color.Black
+        "moderate rain at times" -> Color.Black
+        "moderate rain" -> Color.Black
+        "heavy rain at times" -> Color.Black
+        "heavy rain" -> Color.White
+        "light freezing rain" -> Color.Black
+        "moderate or heavy freezing rain" -> Color.Black
+        "light sleet" -> Color.Black
+        "moderate or heavy sleet" -> Color.Black
+        "patchy light snow" -> Color.Black
+        "light snow" -> Color.Black
+        "patchy moderate snow" -> Color.Black
+        "moderate snow" -> Color.Black
+        "patchy heavy snow" -> Color.Black
+        "heavy snow" -> Color.White
+        "ice pellets" -> Color.Black
+        "light rain shower" -> Color.Black
+        "moderate or heavy rain shower" -> Color.Black
+        "torrential rain shower" -> Color.White
+        "light sleet showers" -> Color.Black
+        "moderate or heavy sleet showers" -> Color.Black
+        "light snow showers" -> Color.Black
+        "moderate or heavy snow showers" -> Color.Black
+        "light showers of ice pellets" -> Color.Black
+        "moderate or heavy showers of ice pellets" -> Color.Black
+        "patchy light rain in area with thunder" -> Color.White
+        "moderate or heavy rain in area with thunder" -> Color.White
+        "patchy light snow in area with thunder" -> Color.White
+        "moderate or heavy snow in area with thunder" -> Color.White
         else -> Color.Black
     }
 }
-fun getNightTextColor(condition: String): Color {
-    return when (condition.lowercase()) {
-        "clear" -> SunnyBlue
-        "cloudy" -> SunnyBlue
-        "partly cloudy" -> SunnyBlue
-        "overcast" -> SunnyBlue
-        "mist" -> SunnyBlue
-        "patchy rain nearby" -> SunnyBlue
-        "patchy light rain" -> SunnyBlue
-        "patchy snow nearby" -> SunnyBlue
-        "patchy sleet nearby" -> SunnyBlue
-        "patchy freezing drizzle nearby" -> SunnyBlue
-        "thundery outbreaks in nearby" -> SunnyBlue
-        "blowing snow" -> SunnyBlue
-        "blizzard" -> SunnyBlue
-        "fog" -> SunnyBlue
-        "freezing fog" -> SunnyBlue
-        "patchy light drizzle" -> SunnyBlue
-        "light drizzle" -> SunnyBlue
-        "freezing drizzle" -> SunnyBlue
-        "heavy freezing drizzle" -> SunnyBlue
-        "light rain" -> SunnyBlue
-        "moderate rain at times" -> SunnyBlue
-        "moderate rain" -> SunnyBlue
-        "heavy rain at times" -> SunnyBlue
-        "heavy rain" -> SunnyBlue
-        "light freezing rain" -> SunnyBlue
-        "moderate or heavy freezing rain" -> SunnyBlue
-        "light sleet" -> SunnyBlue
-        "moderate or heavy sleet" -> SunnyBlue
-        "patchy light snow" -> SunnyBlue
-        "light snow" -> SunnyBlue
-        "patchy moderate snow" -> SunnyBlue
-        "moderate snow" -> SunnyBlue
-        "patchy heavy snow" -> SunnyBlue
-        "heavy snow" -> SunnyBlue
-        "ice pellets" -> SunnyBlue
-        "light rain shower" -> SunnyBlue
-        "moderate or heavy rain shower" -> SunnyBlue
-        "torrential rain shower" -> SunnyBlue
-        "light sleet showers" -> SunnyBlue
-        "moderate or heavy sleet showers" -> SunnyBlue
-        "light snow showers" -> SunnyBlue
-        "moderate or heavy snow showers" -> SunnyBlue
-        "light showers of ice pellets" -> SunnyBlue
-        "moderate or heavy showers of ice pellets" -> SunnyBlue
-        "patchy light rain in area with thunder" -> SunnyBlue
-        "moderate or heavy rain in area with thunder" -> SunnyBlue
-        "patchy light snow in area with thunder" -> SunnyBlue
-        "moderate or heavy snow in area with thunder" -> SunnyBlue
-        else -> Color.White
-    }
-}
+//fun getNightTextColor(condition: String): Color {
+//    return when (condition.lowercase()) {
+//        "clear" -> Color.White
+//        "cloudy" -> Color.White
+//        "partly cloudy" -> Color.White
+//        "overcast" -> Color.White
+//        "mist" -> Color.White
+//        "patchy rain nearby" -> Color.White
+//        "patchy light rain" -> Color.White
+//        "patchy snow nearby" -> Color.White
+//        "patchy sleet nearby" -> Color.White
+//        "patchy freezing drizzle nearby" -> Color.White
+//        "thundery outbreaks in nearby" -> Color.White
+//        "blowing snow" -> Color.White
+//        "blizzard" -> Color.White
+//        "fog" -> Color.White
+//        "freezing fog" -> Color.White
+//        "patchy light drizzle" -> Color.White
+//        "light drizzle" -> Color.White
+//        "freezing drizzle" -> Color.White
+//        "heavy freezing drizzle" -> Color.White
+//        "light rain" -> Color.White
+//        "moderate rain at times" -> Color.White
+//        "moderate rain" -> Color.White
+//        "heavy rain at times" -> Color.White
+//        "heavy rain" -> Color.White
+//        "light freezing rain" -> Color.White
+//        "moderate or heavy freezing rain" -> Color.White
+//        "light sleet" -> Color.White
+//        "moderate or heavy sleet" -> Color.White
+//        "patchy light snow" -> Color.White
+//        "light snow" -> Color.White
+//        "patchy moderate snow" -> Color.White
+//        "moderate snow" -> Color.White
+//        "patchy heavy snow" -> Color.White
+//        "heavy snow" -> Color.White
+//        "ice pellets" -> Color.White
+//        "light rain shower" -> Color.White
+//        "moderate or heavy rain shower" -> Color.White
+//        "torrential rain shower" -> Color.White
+//        "light sleet showers" -> Color.White
+//        "moderate or heavy sleet showers" -> Color.White
+//        "light snow showers" -> Color.White
+//        "moderate or heavy snow showers" -> Color.White
+//        "light showers of ice pellets" -> Color.White
+//        "moderate or heavy showers of ice pellets" -> Color.White
+//        "patchy light rain in area with thunder" -> Color.White
+//        "moderate or heavy rain in area with thunder" ->  Color.White
+//        "patchy light snow in area with thunder" -> Color.White
+//        "moderate or heavy snow in area with thunder" -> Color.White
+//        else -> Color.White
+//    }
+//}
 @DrawableRes
 fun getCurrentDayImage(condition:String): Int {
     return when (condition.lowercase()) {

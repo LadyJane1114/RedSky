@@ -40,8 +40,6 @@ import com.example.redsky.MainViewModel
 import com.example.redsky.R
 import com.example.redsky.models.Forecast
 import com.example.redsky.models.ForecastDay
-import com.example.redsky.ui.theme.DayRain
-import com.example.redsky.ui.theme.SunnyBlue
 import com.example.redsky.ui.theme.Sunset
 import com.example.redsky.utilities.getDayBGColor
 import com.example.redsky.utilities.getDayTextColor
@@ -66,6 +64,7 @@ fun ForecastList(mainViewModel: MainViewModel) {
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
+
         if (forecasts != null){
             LazyColumn {
                 items(forecasts) { forecastDay ->
@@ -84,6 +83,10 @@ fun DailyForecast (forecastDay: ForecastDay){
     val forecastTextColor = getDayTextColor(forecast.condition.text)
     var isExpanded by remember { mutableStateOf(false) }
 
+    val iconUrl = if (forecast.condition.icon.startsWith("//")) {
+        "https:${forecast.condition.icon}"
+    } else forecast.condition.icon
+
 //    Box added to help center things properly and make it look nicer
     Box(modifier = Modifier
         .fillMaxWidth()
@@ -100,7 +103,7 @@ fun DailyForecast (forecastDay: ForecastDay){
 
         ){
             Image(
-                rememberAsyncImagePainter(forecastDay?.day?.condition?.icon),
+                rememberAsyncImagePainter(iconUrl),
                 contentDescription = forecast.condition.text,
                 modifier = Modifier
                     .size(50.dp)
@@ -114,7 +117,7 @@ fun DailyForecast (forecastDay: ForecastDay){
 
             Column {
                 Text(
-                    text = forecastDay?.day.toString(),
+                    text = forecastDay.date,
                     fontSize = 26.sp,
                     color = forecastTextColor
                 )
@@ -141,10 +144,8 @@ fun DailyForecast (forecastDay: ForecastDay){
                             color = forecastTextColor
                         )
                     }
-
-                    }
+                }
             }
         }
     }
-
 }

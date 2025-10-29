@@ -39,6 +39,7 @@ data class Current (
 
 )
 data class Forecast(
+    @SerializedName("forecastday")
     val forecastDay: List<ForecastDay>
 )
 
