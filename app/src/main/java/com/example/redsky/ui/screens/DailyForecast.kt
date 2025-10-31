@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -30,7 +31,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -38,12 +38,13 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.redsky.MainViewModel
 import com.example.redsky.R
-import com.example.redsky.models.Forecast
 import com.example.redsky.models.ForecastDay
+import com.example.redsky.ui.theme.Pink80
 import com.example.redsky.ui.theme.Sunset
-import com.example.redsky.utilities.getDayBGColor
-import com.example.redsky.utilities.getDayTextColor
-
+import com.example.redsky.utilities.getForecastBGColor
+import com.example.redsky.utilities.getForecastTextColor
+import com.example.redsky.utilities.convertDate
+import kotlin.math.roundToInt
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -76,11 +77,12 @@ fun ForecastList(mainViewModel: MainViewModel) {
 }
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DailyForecast (forecastDay: ForecastDay){
     val forecast = forecastDay.day
-    val forecastBackgroundColor = getDayBGColor(forecast.condition.text)
-    val forecastTextColor = getDayTextColor(forecast.condition.text)
+    val forecastBackgroundColor = getForecastBGColor(forecast.condition.text)
+    val forecastTextColor = getForecastTextColor(forecast.condition.text)
     var isExpanded by remember { mutableStateOf(false) }
 
     val iconUrl = if (forecast.condition.icon.startsWith("//")) {
@@ -106,8 +108,8 @@ fun DailyForecast (forecastDay: ForecastDay){
                 rememberAsyncImagePainter(iconUrl),
                 contentDescription = forecast.condition.text,
                 modifier = Modifier
-                    .size(50.dp)
-                    .background(color = MaterialTheme.colorScheme.primary, RoundedCornerShape(15.dp))
+                    .size(85.dp)
+                    .background(color = Sunset, RoundedCornerShape(20.dp))
                     .padding(5.dp),
                 alignment = Alignment.Center,
                 contentScale = ContentScale.Fit
@@ -117,30 +119,43 @@ fun DailyForecast (forecastDay: ForecastDay){
 
             Column {
                 Text(
-                    text = forecastDay.date,
+                    text = convertDate(forecastDay.date),
+                    fontSize = 30.sp,
+                    color = forecastTextColor
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = forecast.condition.text,
                     fontSize = 26.sp,
                     color = forecastTextColor
                 )
+                Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "High of: ${forecast.temperatureHigh}°C    Low of: ${forecast.temperatureLow}°C",
-                    fontSize = 18.sp,
-                    color = forecastTextColor
-                )
-                Text(
-                    text = forecast.condition.text,
-                    fontSize = 16.sp,
+                    text = "High: ${forecast.temperatureHigh.roundToInt()}°C   Low: ${forecast.temperatureLow.roundToInt()}°C",
+                    fontSize = 20.sp,
                     color = forecastTextColor
                 )
                 AnimatedVisibility(visible = isExpanded) {
                     Column {
+                        Spacer(modifier = Modifier.height(4.dp))
+                        forecast.precipitationAmount.takeIf {it >= 1}?.let{
+                            Text(
+                                text = "Precipitation: ${forecast.precipitationAmount.roundToInt()}mm",
+                                fontSize = 18.sp,
+                                color = forecastTextColor
+                            )
+                        }
+                        forecast.snowAmount.takeIf {it >= 1}?.let{
+                            Text(
+                                text = "Snow: ${forecast.snowAmount.roundToInt()}cm",
+                                fontSize = 18.sp,
+                                color = forecastTextColor
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "Precipitation: ${forecast.precipitationAmount}mm",
-                            fontSize = 16.sp,
-                            color = forecastTextColor
-                        )
-                        Text(
-                            text = "Wind: ${forecast.windSpeed}mph, ${forecast.windDirection}",
-                            fontSize = 16.sp,
+                            text = "Wind: ${forecast.windSpeed.roundToInt()}mph, ${forecast.windDirection}",
+                            fontSize = 18.sp,
                             color = forecastTextColor
                         )
                     }
@@ -148,4 +163,5 @@ fun DailyForecast (forecastDay: ForecastDay){
             }
         }
     }
+    Spacer(modifier = Modifier.height(8.dp))
 }

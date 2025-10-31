@@ -32,8 +32,8 @@ data class Current (
     val windDirection: String,
     @SerializedName("wind_kph")
     val windSpeed: Float,
-    @SerializedName("last_updated")
-    val currentDate: String,
+    @SerializedName("last_updated_epoch")
+    val currentDate: Long,
     @SerializedName("is_day")
     val isDay: Int// Figure out a way to format this nicely, because the way it's formatted in the API is gross
 
@@ -44,7 +44,8 @@ data class Forecast(
 )
 
 data class ForecastDay (
-    val date: String,
+    @SerializedName("date_epoch")
+    val date: Long,
     val day: Day
 //    val astro: Astro // including this for later if I have time to use it
 )
@@ -58,16 +59,11 @@ data class Day (
     @SerializedName("totalprecip_mm")
     val precipitationAmount: Float,
     @SerializedName("totalsnow_cm")
-    val snowAmount: Float, // for later
-    @SerializedName("daily_chance_of_rain")
-    val precipitationProbability: Float,
-    @SerializedName("daily_chance_of_snow")
-    val showProbability:Float, // for later
+    val snowAmount: Float,
     @SerializedName("wind_dir")
     val windDirection: String,
     @SerializedName("maxwind_kph")
-    val windSpeed: Float,
-    val avghumidity: Float
+    val windSpeed: Float
 )
 
 data class Condition (

@@ -1,6 +1,8 @@
 package com.example.redsky.utilities
 
+import android.os.Build
 import androidx.annotation.DrawableRes
+import androidx.annotation.RequiresApi
 import com.example.redsky.R
 import androidx.compose.ui.graphics.Color
 import com.example.redsky.ui.theme.Blizzard
@@ -25,6 +27,11 @@ import com.example.redsky.ui.theme.ThunderSnowDay
 import com.example.redsky.ui.theme.ThunderSnowNight
 import com.example.redsky.ui.theme.TorrentialDay
 import com.example.redsky.ui.theme.TorrentialNight
+import okhttp3.internal.UTC
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 
 fun getDayBGColor(condition:String): Color {
@@ -140,6 +147,113 @@ fun getDayTextColor(condition: String): Color {
         "cloudy" -> Color.White
         "partly cloudy" -> Color.Black
         "overcast" -> Color.White
+        "mist" -> Color.Black
+        "patchy rain nearby" -> Color.Black
+        "patchy light rain" -> Color.Black
+        "patchy snow nearby" -> Color.Black
+        "patchy sleet nearby" -> Color.Black
+        "patchy freezing drizzle nearby" -> Color.Black
+        "thundery outbreaks in nearby" -> Color.White
+        "blowing snow" -> Color.White
+        "blizzard" -> Color.White
+        "fog" -> Color.Black
+        "freezing fog" -> Color.White
+        "patchy light drizzle" -> Color.Black
+        "light drizzle" -> Color.Black
+        "freezing drizzle" -> Color.Black
+        "heavy freezing drizzle" -> Color.White
+        "light rain" -> Color.Black
+        "moderate rain at times" -> Color.Black
+        "moderate rain" -> Color.Black
+        "heavy rain at times" -> Color.Black
+        "heavy rain" -> Color.White
+        "light freezing rain" -> Color.Black
+        "moderate or heavy freezing rain" -> Color.Black
+        "light sleet" -> Color.Black
+        "moderate or heavy sleet" -> Color.Black
+        "patchy light snow" -> Color.Black
+        "light snow" -> Color.Black
+        "patchy moderate snow" -> Color.Black
+        "moderate snow" -> Color.Black
+        "patchy heavy snow" -> Color.Black
+        "heavy snow" -> Color.White
+        "ice pellets" -> Color.Black
+        "light rain shower" -> Color.Black
+        "moderate or heavy rain shower" -> Color.Black
+        "torrential rain shower" -> Color.White
+        "light sleet showers" -> Color.Black
+        "moderate or heavy sleet showers" -> Color.Black
+        "light snow showers" -> Color.Black
+        "moderate or heavy snow showers" -> Color.Black
+        "light showers of ice pellets" -> Color.Black
+        "moderate or heavy showers of ice pellets" -> Color.Black
+        "patchy light rain in area with thunder" -> Color.White
+        "moderate or heavy rain in area with thunder" -> Color.White
+        "patchy light snow in area with thunder" -> Color.White
+        "moderate or heavy snow in area with thunder" -> Color.White
+        else -> Color.Black
+    }
+}
+
+fun getForecastBGColor(condition:String): Color {
+    return when (condition.lowercase()) {
+        "sunny" -> SunnyBlue
+        "cloudy " -> CloudyDay
+        "partly cloudy " -> PartCloudDay
+        "overcast " -> CloudyDay
+        "mist" -> PartCloudDay
+        "patchy rain nearby" -> LRainDay
+        "patchy light rain" -> LRainDay
+        "patchy snow nearby" -> LSnowSunDay
+        "patchy sleet nearby" -> LSnowSunDay
+        "patchy freezing drizzle nearby" -> LSnowSunDay
+        "thundery outbreaks in nearby" -> ThunderDay
+        "blowing snow" -> Blizzard
+        "blizzard" -> Blizzard
+        "fog" -> FogDay
+        "freezing fog" -> FrFogDay
+        "patchy light drizzle" -> LRainNoSunDay
+        "light drizzle" -> LRainNoSunDay
+        "freezing drizzle" -> LRainNoSunDay
+        "heavy freezing drizzle" -> CloudyDay
+        "light rain" -> LRainNoSunDay
+        "moderate rain at times" -> LRainDay
+        "moderate rain" -> LRainNoSunDay
+        "heavy rain at times" -> PartCloudDay
+        "heavy rain" -> CloudyDay
+        "light freezing rain" -> LSnowSunDay
+        "moderate or heavy freezing rain" -> LRainNoSunDay
+        "light sleet" -> LRainNoSunDay
+        "moderate or heavy sleet" -> LRainNoSunDay
+        "patchy light snow" -> LSnowSunDay
+        "light snow" -> LRainNoSunDay
+        "patchy moderate snow" -> LRainNoSunDay
+        "moderate snow" -> LRainNoSunDay
+        "patchy heavy snow" -> LSnowSunDay
+        "heavy snow" -> CloudyDay
+        "ice pellets" -> LRainNoSunDay
+        "light rain shower" -> LRainDay
+        "moderate or heavy rain shower" -> PartCloudDay
+        "torrential rain shower" -> TorrentialDay
+        "light sleet showers" -> LSnowSunDay
+        "moderate or heavy sleet showers" -> LRainNoSunDay
+        "light snow showers" -> LSnowSunDay
+        "moderate or heavy snow showers" -> LSnowSunDay
+        "light showers of ice pellets" -> LSnowSunDay
+        "moderate or heavy showers of ice pellets" -> LRainNoSunDay
+        "patchy light rain in area with thunder" -> ThunderDay
+        "moderate or heavy rain in area with thunder" -> ThunderDay
+        "patchy light snow in area with thunder" -> ThunderSnowDay
+        "moderate or heavy snow in area with thunder" -> ThunderSnowDay
+        else -> Color.White
+    }
+}
+fun getForecastTextColor(condition: String): Color {
+    return when (condition.lowercase()) {
+        "sunny" -> Color.Black
+        "cloudy " -> Color.White
+        "partly cloudy " -> Color.Black
+        "overcast " -> Color.White
         "mist" -> Color.Black
         "patchy rain nearby" -> Color.Black
         "patchy light rain" -> Color.Black
@@ -347,4 +461,12 @@ fun getCurrentNightImage(condition:String): Int {
         "moderate or heavy snow in area with thunder" -> R.drawable.current_thunder_snow_no_sun_night
         else -> R.drawable.current_default_night
     }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun convertDate(epochSeconds: Long): String {
+    val instant = Instant.ofEpochSecond(epochSeconds);
+
+    val formatter = DateTimeFormatter.ofPattern("EEE, MMM d, yyyy").withZone(ZoneOffset.UTC)
+    return formatter.format(instant)
 }

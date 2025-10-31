@@ -26,8 +26,8 @@ import com.example.redsky.utilities.getCurrentNightImage
 import com.example.redsky.utilities.getDayBGColor
 import com.example.redsky.utilities.getDayTextColor
 import com.example.redsky.utilities.getNightBGColor
-
-
+import com.example.redsky.utilities.convertDate
+import kotlin.math.roundToInt
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -73,14 +73,14 @@ fun CurrentWeather(mainViewModel: MainViewModel) {
             )
 
             Text(
-                text = "${weather?.current?.temperature}°C",
+                text = "${weather?.current?.temperature!!.roundToInt()}°C",
                 fontSize = 48.sp,
                 color = textColor
             )
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "Feels like: ${weather?.current?.feelsLike}°C",
+                text = "Feels like: ${weather?.current?.feelsLike!!.roundToInt()}°C",
                 fontSize = 20.sp,
                 color = textColor
             )
@@ -95,7 +95,7 @@ fun CurrentWeather(mainViewModel: MainViewModel) {
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "Wind: ${weather?.current?.windSpeed}mph, ${weather?.current?.windDirection}",
+                text = "Wind: ${weather?.current?.windSpeed!!.roundToInt()}mph, ${weather?.current?.windDirection}",
                 fontSize = 20.sp,
                 color = textColor
             )
@@ -104,7 +104,7 @@ fun CurrentWeather(mainViewModel: MainViewModel) {
 
             // Need to figure out how to make Date Dynamic, but potentially that's in the API? We'll see.
             Text(
-                text = "${weather?.current?.currentDate}",
+                text = convertDate(weather?.current!!.currentDate),
                 fontSize = 30.sp,
                 color = textColor
             )
