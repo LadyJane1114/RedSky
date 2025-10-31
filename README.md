@@ -11,8 +11,16 @@
 </div>
 
 <h4>Special Thanks</h4>
-Icons in navigation menu created by the following users:
-<a href="https://www.flaticon.com/free-icons/ship" title="ship icons">Ship icon created by Us and Up - Flaticon</a>
-<a href="https://www.flaticon.com/free-icons/telescope" title="telescope icons">Telescope icon created by Mayor Icons - Flaticon</a>
-<a href="https://www.flaticon.com/free-icons/moon" title="moon icons">Moon icon created by Good Ware - Flaticon</a>
+<p>Icons in navigation menu created by the following users:</p>
+<div>
+  <a href="https://www.flaticon.com/free-icons/ship" title="ship icons">Ship icon created by Us and Up - Flaticon</a>
+</div>
+<div>
+  <a href="https://www.flaticon.com/free-icons/telescope" title="telescope icons">Telescope icon created by Mayor Icons - Flaticon</a>
+</div>
+<div>
+  <a href="https://www.flaticon.com/free-icons/moon" title="moon icons">Moon icon created by Good Ware - Flaticon</a>
+</div>
+  
+
 
