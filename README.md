@@ -11,7 +11,7 @@
 </div>
 
 <h4>Special Thanks</h4>
-<p>Icons in navigation menu created by the following users:</p>
+<h5>Icons in navigation menu created by the following users:</h5>
 <div>
   <a href="https://www.flaticon.com/free-icons/ship" title="ship icons">Ship icon created by Us and Up - Flaticon</a>
 </div>
