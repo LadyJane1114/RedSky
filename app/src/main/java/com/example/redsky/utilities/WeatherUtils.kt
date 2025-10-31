@@ -463,6 +463,29 @@ fun getCurrentNightImage(condition:String): Int {
     }
 }
 
+
+// Moon Functions
+@DrawableRes
+fun getMoonPhaseImage(moonPhase:String):Int {
+    return when (moonPhase.lowercase()) {
+        "new moon" -> R.drawable.moon_new_moon
+        "waxing crescent" -> R.drawable.moon_waxing_crescent
+        "first quarter" -> R.drawable.moon_first_quarter
+        "waxing gibbous" -> R.drawable.moon_waxing_gibbous
+        "full moon" -> R.drawable.moon_full_moon
+        "waning gibbous" -> R.drawable.moon_waning_gibbous
+        "last quarter" -> R.drawable.moon_third_quarter
+        "waning crescent" -> R.drawable.moon_waning_crescent
+        else -> R.drawable.current_default_night
+    }
+}
+
+
+
+
+
+
+// Date Conversion
 @RequiresApi(Build.VERSION_CODES.O)
 fun convertDate(epochSeconds: Long): String {
     val instant = Instant.ofEpochSecond(epochSeconds);

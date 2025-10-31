@@ -48,6 +48,7 @@ import com.example.redsky.models.MyLocation
 import com.example.redsky.models.Weather
 import com.example.redsky.ui.screens.CurrentWeather
 import com.example.redsky.ui.screens.ForecastList
+import com.example.redsky.ui.screens.MoonPhase
 import com.example.redsky.ui.theme.BannerRed
 import com.example.redsky.ui.theme.BannerText
 import com.example.redsky.ui.theme.RedSkyTheme
@@ -167,6 +168,7 @@ class MainActivity : ComponentActivity() {
                             val title = when (currentDestination) {
                                 "Forecast" -> "Weekly Forecast"
                                 "Current" -> "Current Weather"
+                                "Moon Phase" -> "Moon Phase"
                                 else -> null
                             }
                             title?.let{
@@ -189,6 +191,33 @@ class MainActivity : ComponentActivity() {
                     contentColor = BannerText
                 )
                 {
+                    NavigationBarItem(
+                        label = {
+                            Text("Moon Phase",
+                                fontSize = 18.sp)
+                        },
+                        icon = {
+                            Icon(
+                                painter = painterResource(R.drawable.nav_moon),
+                                contentDescription = "Moon Icon",
+                                modifier = Modifier.size(40.dp)
+                            )
+                        },
+                        selected = selectedItem == 1,
+                        onClick = {
+                            selectedItem = 1
+                            navController.navigate("Moon Phase")
+                        },
+                        colors = NavigationBarItemColors(
+                            selectedIconColor = BannerText,
+                            unselectedIconColor = BannerText,
+                            selectedTextColor = BannerText,
+                            unselectedTextColor = BannerText,
+                            selectedIndicatorColor = Sunrise,
+                            disabledIconColor = Transparent,
+                            disabledTextColor = BannerText,
+                        )
+                    )
                     NavigationBarItem(
                         label = {
                             Text("Current",
@@ -229,9 +258,9 @@ class MainActivity : ComponentActivity() {
                                 modifier = Modifier.size(40.dp)
                             )
                         },
-                        selected = selectedItem == 1,
+                        selected = selectedItem == 2,
                         onClick = {
-                            selectedItem= 1
+                            selectedItem= 2
                             navController.navigate("Forecast")
                         },
                         colors = NavigationBarItemColors(
@@ -254,6 +283,10 @@ class MainActivity : ComponentActivity() {
                 modifier = Modifier.padding(innerPadding)
             )
             {
+                composable("Moon Phase")
+                {
+                    MoonPhase(mainViewModel)
+                }
                 composable("Current")
                 {
                     CurrentWeather(mainViewModel)

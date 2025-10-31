@@ -35,7 +35,7 @@ data class Current (
     @SerializedName("last_updated_epoch")
     val currentDate: Long,
     @SerializedName("is_day")
-    val isDay: Int// Figure out a way to format this nicely, because the way it's formatted in the API is gross
+    val isDay: Int
 
 )
 data class Forecast(
@@ -46,8 +46,8 @@ data class Forecast(
 data class ForecastDay (
     @SerializedName("date_epoch")
     val date: Long,
-    val day: Day
-//    val astro: Astro // including this for later if I have time to use it
+    val day: Day,
+    val astro: Astro
 )
 
 data class Day (
@@ -71,7 +71,7 @@ data class Condition (
     val icon: String
 )
 
-//data class Astro (
-//    @SerializedName("moon_phase")
-//    val moonPhase: String
-//) for later
+data class Astro (
+    @SerializedName("moon_phase")
+    val moonPhase: String
+)

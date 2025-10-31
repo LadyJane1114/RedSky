@@ -43,3 +43,6 @@ val ThunderDay = Color(0xFF474647)
 val ThunderNight = Color(0xFF6a2943)
 val ThunderSnowDay = Color(0xFF44464d)
 val ThunderSnowNight = Color(0xFF622958)
+
+//Moon BG
+val MoonBG = Color(0xFF192731)
