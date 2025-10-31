@@ -21,6 +21,8 @@
 <div>
   <a href="https://www.flaticon.com/free-icons/moon" title="moon icons">Moon icon created by Good Ware - Flaticon</a>
 </div>
+<h5>Weather API:</h5>
+<a href="https://www.weatherapi.com/" title="weather API">WeatherAPI</a>
   
 
 
