@@ -1,7 +1,7 @@
 <h1>Welcome to Red Sky</h1>
 <h3>Red sky at morning, sailor take warning... Red sky at night, sailor's delight.</h3>
 
-<p>Red Sky is a nautical themed weather mobile application for Android, inspired by the above phrase. It includes information about the current day's weather, information about the forecast for the upcoming days, as well as the current phase of the mooon.</p>
+<p>Red Sky is a nautical themed weather mobile application for Android, inspired by the above phrase. It includes information about the current day's weather, information about the forecast for the upcoming days, as well as the current phase of the moon.</p>
 <p>This is a student assignment for second year IT Programming at Nova Scotia Community College</p>
 
 <div align="center">
