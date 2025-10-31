@@ -10,7 +10,7 @@
   <img src="https://github.com/user-attachments/assets/76d0f412-f924-4014-a105-1b4d5e641a60" alt="Moon" width="30%">
 </div>
 
-<h4>Special Thanks</h4>
+<h4>Special Thanks!</h4>
 <h5>Icons in navigation menu created by the following users:</h5>
 <div>
   <a href="https://www.flaticon.com/free-icons/ship" title="ship icons">Ship icon created by Us and Up - Flaticon</a>
