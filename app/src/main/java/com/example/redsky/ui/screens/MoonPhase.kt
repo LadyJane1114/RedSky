@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -27,7 +29,8 @@ import androidx.compose.ui.unit.sp
 import com.example.redsky.MainViewModel
 import com.example.redsky.ui.theme.MoonBG
 import com.example.redsky.utilities.getMoonPhaseImage
-
+import java.time.LocalDate
+import kotlin.random.Random
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -69,8 +72,10 @@ fun MoonPhase(mainViewModel: MainViewModel){
             "There are nights when the wolves are silent and only the moon howls. —George Carlin",
             "The moon is friend for the lonesome to talk to. —Carl Sandburg"
         )
-        val day = weather?.forecast?.forecastDay?.firstOrNull()!!.date
-        return quotes[(day % quotes.size).toInt()]
+        val today = weather?.forecast?.forecastDay?.firstOrNull()!!.date
+        val randomIndex = Random(today).nextInt(quotes.size)
+
+        return quotes[randomIndex]
     }
 
     Box(
@@ -78,7 +83,10 @@ fun MoonPhase(mainViewModel: MainViewModel){
             .fillMaxSize()
             .background(MoonBG)
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.verticalScroll(rememberScrollState())
+        ) {
             Image(
                 painter= painterResource(id = moonImage),
                 contentDescription = weather?.forecast?.forecastDay?.firstOrNull()?.astro?.moonPhase,
