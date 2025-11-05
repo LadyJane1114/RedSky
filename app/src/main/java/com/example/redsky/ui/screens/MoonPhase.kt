@@ -112,5 +112,3 @@ fun MoonPhase(mainViewModel: MainViewModel){
         }
     }
 }
-
-//commentforpush
