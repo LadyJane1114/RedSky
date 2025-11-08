@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.sp
 import com.example.redsky.MainViewModel
 import com.example.redsky.ui.theme.MoonBG
 import com.example.redsky.utilities.getMoonPhaseImage
-import java.time.LocalDate
 import kotlin.random.Random
 
 
