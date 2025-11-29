@@ -21,6 +21,7 @@ import com.example.redsky.ui.theme.LSnowSunDay
 import com.example.redsky.ui.theme.ModRainNoSunNight
 import com.example.redsky.ui.theme.PartCloudDay
 import com.example.redsky.ui.theme.PartCloudNight
+import com.example.redsky.ui.theme.Sunset
 import com.example.redsky.ui.theme.ThunderDay
 import com.example.redsky.ui.theme.ThunderNight
 import com.example.redsky.ui.theme.ThunderSnowDay
@@ -90,6 +91,7 @@ fun getDayBGColor(condition:String): Color {
 fun getNightBGColor(condition:String): Color {
     return when (condition.lowercase()) {
         "clear" -> Midnight
+        "sunny" -> Sunset
         "cloudy" -> CloudyNight
         "partly cloudy" -> PartCloudNight
         "overcast" -> CloudyNight
@@ -412,6 +414,7 @@ fun getCurrentDayImage(condition:String): Int {
 fun getCurrentNightImage(condition:String): Int {
     return when (condition.lowercase()) {
         "clear" -> R.drawable.current_clear
+        "sunny" -> R.drawable.current_sunset
         "cloudy" -> R.drawable.current_cloudy_night
         "partly cloudy" -> R.drawable.current_part_cloudy_night
         "overcast" -> R.drawable.current_cloudy_night

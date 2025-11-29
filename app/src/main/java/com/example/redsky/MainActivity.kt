@@ -44,8 +44,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.redsky.models.MyLocation
-import com.example.redsky.models.Weather
 import com.example.redsky.ui.screens.CurrentWeather
 import com.example.redsky.ui.screens.ForecastList
 import com.example.redsky.ui.screens.MoonPhase
